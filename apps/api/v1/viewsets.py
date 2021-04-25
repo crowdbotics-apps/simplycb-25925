@@ -11,6 +11,26 @@ from apps.models import App
 
 
 class AppViewSet(ModelViewSet):
+    """
+    list:
+        Return a list of all apps.
+
+    create:
+        Create a new app.
+
+    retrieve:
+        Return the given app.
+
+    update:
+        Update an app.
+
+    partial_update:
+        Update an app.
+
+    destroy:
+        Delete an app.
+    """
+
     serializer_class = AppSerializer
     queryset = App.objects.all()
     authentication_classes = (SessionAuthentication, TokenAuthentication)

@@ -27,7 +27,7 @@ from patches import routers
 from home.api.v1.urls import router as home_router
 
 router = routers.DefaultRouter()
-# Commented this out to remove default router urls from API
+# Commenting this out to remove home router urls from api
 # router.extend(home_router)
 
 urlpatterns = [

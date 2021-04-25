@@ -22,11 +22,19 @@ from rest_framework import permissions
 from drf_yasg.views import get_schema_view
 from drf_yasg import openapi
 
+from patches import routers
+
+from home.api.v1.urls import router as home_router
+
+router = routers.DefaultRouter()
+# Commented this out to remove default router urls from API
+# router.extend(home_router)
+
 urlpatterns = [
     path("", include("home.urls")),
     path("accounts/", include("allauth.urls")),
     path("modules/", include("modules.urls")),
-    path("api/v1/", include("home.api.v1.urls")),
+    path("api/v1/", include(router.urls)),
     path("admin/", admin.site.urls),
     path("users/", include("users.urls", namespace="users")),
     path("rest-auth/", include("rest_auth.urls")),
@@ -55,4 +63,3 @@ schema_view = get_schema_view(
 urlpatterns += [
     path("api-docs/", schema_view.with_ui("swagger", cache_timeout=0), name="api_docs")
 ]
-

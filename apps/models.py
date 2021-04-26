@@ -61,6 +61,11 @@ class App(models.Model):
         User,
         on_delete=models.CASCADE,
         blank=True,
+        null=True,
     )
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        slug = self.name.lower().replace(" ", "-")
+        return f"{slug}-{self.id}"

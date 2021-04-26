@@ -8,6 +8,7 @@ from rest_framework.response import Response
 from apps.api.v1.serializers import AppSerializer
 
 from apps.models import App
+from apps.permissions import IsOwner
 
 
 class AppViewSet(ModelViewSet):
@@ -34,5 +35,5 @@ class AppViewSet(ModelViewSet):
     serializer_class = AppSerializer
     queryset = App.objects.all()
     authentication_classes = (SessionAuthentication, TokenAuthentication)
-    permission_classes = [IsAdminUser]
+    permission_classes = [IsAdminUser, IsOwner]
     http_method_names = ["get", "post", "put", "patch", "delete"]

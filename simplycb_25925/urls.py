@@ -25,10 +25,12 @@ from drf_yasg import openapi
 from patches import routers
 
 from home.api.v1.urls import router as home_router
+from apps.api.v1.urls import router as apps_router
 
 router = routers.DefaultRouter()
 # Commenting this out to remove home router urls from api
 # router.extend(home_router)
+router.extend(apps_router)
 
 urlpatterns = [
     path("", include("home.urls")),

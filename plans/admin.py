@@ -1,3 +1,8 @@
 from django.contrib import admin
 
-# Register your models here.
+from plans.models import Plan
+
+
+@admin.register(Plan)
+class PlanAdmin(admin.ModelAdmin):
+    pass

@@ -18,6 +18,11 @@ APP_FRAMEWORK_CHOICES = [
 
 
 class App(models.Model):
+    """
+    This model represents an App instance created by a User and associated
+    with a Subscription. It contains all relevant metadata for an App.
+    """
+
     name = models.CharField(
         _("Name"),
         max_length=50,

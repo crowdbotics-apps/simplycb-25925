@@ -5,10 +5,6 @@ from apps.models import App
 from plans.models import Plan
 from subscriptions.models import Subscription
 
-free_plan, _ = Plan.objects.get_or_create(
-    name="Free", description="Free Plan Description", price="0.00"
-)
-
 
 @receiver(post_save, sender=App)
 def create_subscription(sender, instance, **kwargs):
@@ -17,7 +13,7 @@ def create_subscription(sender, instance, **kwargs):
     if instance.user and not hasattr(instance, "subscription"):
         Subscription.objects.create(
             user=instance.user,
-            plan=free_plan,
+            plan=Plan.objects.get(name="Free"),
             app=instance,
             active=True,
         )

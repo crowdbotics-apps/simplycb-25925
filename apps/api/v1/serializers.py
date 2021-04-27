@@ -8,8 +8,20 @@ from apps.models import App
 class AppSerializer(serializers.ModelSerializer):
     class Meta:
         model = App
-        fields = "__all__"
-        read_only_fields = ["user"]
+        fields = [
+            "id",
+            "name",
+            "description",
+            "type",
+            "framework",
+            "domain_name",
+            "screenshot",
+            "subscription",
+            "user",
+            "created_at",
+            "updated_at",
+        ]
+        read_only_fields = ["user", "subscription"]
 
     def _get_request(self):
         request = self.context.get("request")

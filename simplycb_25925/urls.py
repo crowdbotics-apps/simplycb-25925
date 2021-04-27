@@ -27,12 +27,14 @@ from patches import routers
 from home.api.v1.urls import router as home_router
 from apps.api.v1.urls import router as apps_router
 from plans.api.v1.urls import router as plans_router
+from subscriptions.api.v1.urls import router as subscriptions_router
 
 router = routers.DefaultRouter()
 # Commenting this out to remove home router urls from api
 # router.extend(home_router)
 router.extend(apps_router)
 router.extend(plans_router)
+router.extend(subscriptions_router)
 
 urlpatterns = [
     path("", include("home.urls")),

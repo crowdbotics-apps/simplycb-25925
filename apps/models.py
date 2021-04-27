@@ -51,12 +51,6 @@ class App(models.Model):
         blank=True,
         max_length=50,
     )
-    # subscription = models.ForeignKey(
-    #     "subscriptions.Subscription",
-    #     _("Subscription"),
-    #     blank=True,
-    #     null=True
-    # )
     user = models.ForeignKey(
         User,
         on_delete=models.CASCADE,

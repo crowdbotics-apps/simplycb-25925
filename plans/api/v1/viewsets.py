@@ -1,14 +1,10 @@
 from rest_framework.authentication import SessionAuthentication, TokenAuthentication
-from rest_framework.exceptions import PermissionDenied
-from rest_framework.permissions import IsAdminUser
+from rest_framework.permissions import IsAuthenticated
 from rest_framework.viewsets import GenericViewSet
 from rest_framework.mixins import ListModelMixin, RetrieveModelMixin
-from rest_framework.response import Response
 
 from plans.api.v1.serializers import PlanSerializer
 from plans.models import Plan
-
-from apps.permissions import IsOwner
 
 
 class PlanViewSet(RetrieveModelMixin, ListModelMixin, GenericViewSet):
@@ -23,5 +19,5 @@ class PlanViewSet(RetrieveModelMixin, ListModelMixin, GenericViewSet):
     queryset = Plan.objects.all()
     serializer_class = PlanSerializer
     authentication_classes = (SessionAuthentication, TokenAuthentication)
-    permission_classes = [IsAdminUser | IsOwner]
+    permission_classes = [IsAuthenticated]
     http_method_names = ["get"]
